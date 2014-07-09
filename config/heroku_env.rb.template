@@ -1,0 +1,8 @@
+# This file contains the ENV vars necessary to run the app locally.  
+# Some of these values are sensitive, and some are developer specific.
+#
+# DO NOT CHECK THIS FILE INTO VERSION CONTROL
+
+ENV["AWS_BUCKET"]               = "aws bucket to use"
+ENV["AWS_ACCESS_KEY_ID"]        = "aws access key to use"
+ENV["AWS_SECRET_ACCESS_KEY"]    = "aws secret key to use"

@@ -1,0 +1,38 @@
+<a href="https://s3.amazonaws.com/nico44-ian/sample_data_file/sample_data.txt">Sample data file</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://s3.amazonaws.com/nico44-ian/sample_data_file/sample_data.key.txt">Sample key file</a>
+<hr>
+<%= form_for @job, :url => home_create_path(@job), :html => {:multipart => true } do |f| %>
+  <p>
+    <%= f.label :key_file %>
+    <%= f.file_field :key_file %>
+  </p>
+  <p>
+    <%= f.label :data_file %>
+    <%= f.file_field :data_file %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+<hr>
+<br/>
+<div>
+  <% @jobs.each do |job| %>
+    <div>
+      <% if job.status == "Done" %>
+        <b>
+          <a href='<%="https://s3.amazonaws.com/nico44-ian/#{job.id}/output/item_analysis_#{job.id}.pdf"%>'
+             target='_blank'>
+            Job <%= job.id %>
+          </a>
+        </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <% else %>
+        <b>Job <%= job.id %></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <% end %>
+      Status: <%= job.status %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Worker: <%= job.worker %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Duration: <%= job.duration %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Total Duration: <%= job.total_duration %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Message: <%= job.message %>
+      <hr>
+    </div>
+  <% end %>
+</div>
